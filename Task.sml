@@ -287,3 +287,25 @@ fun remove_card (cs : card list, c : card, e : exn) =
     case cs of [] => raise e
         | x::xs => if x=c then xs else x::remove_card(xs, c, e)
 
+
+fun provided_test1 () = 
+    let val var1 = [(Hearts, Ace), (Diamonds, Num 3)]
+        val var2 = (Hearts, Ace)
+    in
+        remove_card(var1, var2, IllegalMove) = [(Diamonds, Num 3)]
+    end;
+
+fun provided_test2 () = 
+    let val var1 = [(Hearts, Num 2)]
+        val var2 = (Hearts, Ace)
+    in
+        ((remove_card (var1, var2, IllegalMove); false) handle IllegalMove => true)
+    end;
+
+
+val REMOVE_CARD_TEST_1 = provided_test1 ()
+val REMOVE_CARD_TEST_2 = provided_test2 ()
+
+
+
+
