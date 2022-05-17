@@ -185,6 +185,9 @@ fun provided_test1 () =
 val SIMILAR_NAMES_1 = provided_test1 ();
 
     
+    (* TASK 2 *)
+
+
 
 (* you may assume that Num is always used with values 2, 3, ..., 10
    though it will not really come up *)
@@ -199,4 +202,10 @@ exception IllegalMove
 
 (* put your solutions for problem 2 here *)
 
+fun card_color (suit, rank) = 
+  case suit of
+    Spades => Black
+    | Clubs => Black
+    | Diamonds => Red
+    | Hearts => Red
 
