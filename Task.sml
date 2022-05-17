@@ -211,38 +211,38 @@ fun card_color (suit, rank) =
 
 
 
-fun provided_test1 () = 
-    let val var1 = Clubs
-        val var2 = Num 2
-    in
-        card_color(var1, var2) = Black
-    end;
+        fun provided_test1 () = 
+            let val var1 = Clubs
+                val var2 = Num 2
+            in
+                card_color(var1, var2) = Black
+            end;
 
-fun provided_test2 () = 
-    let val var1 = Spades
-        val var2 = Num 2
-    in
-        card_color(var1, var2) = Black
-    end;
+        fun provided_test2 () = 
+            let val var1 = Spades
+                val var2 = Num 2
+            in
+                card_color(var1, var2) = Black
+            end;
 
-fun provided_test3 () = 
-    let val var1 = Diamonds
-        val var2 = Num 2
-    in
-        card_color(var1, var2) = Red
-    end;
+        fun provided_test3 () = 
+            let val var1 = Diamonds
+                val var2 = Num 2
+            in
+                card_color(var1, var2) = Red
+            end;
 
-fun provided_test4 () = 
-    let val var1 = Hearts
-        val var2 = Num 2
-    in
-        card_color(var1, var2) = Red
-    end;
+        fun provided_test4 () = 
+            let val var1 = Hearts
+                val var2 = Num 2
+            in
+                card_color(var1, var2) = Red
+            end;
 
-val CARD_COLOUR_TEST_1 = provided_test1()
-val CARD_COLOUR_TEST_2 = provided_test2()
-val CARD_COLOUR_TEST_3 = provided_test3()
-val CARD_COLOUR_TEST_4 = provided_test4()
+    val CARD_COLOUR_TEST_1 = provided_test1()
+    val CARD_COLOUR_TEST_2 = provided_test2()
+    val CARD_COLOUR_TEST_3 = provided_test3()
+    val CARD_COLOUR_TEST_4 = provided_test4()
 
 
 
@@ -256,30 +256,30 @@ fun card_value (suit, rank) =
     | Num i => i
 
 
-fun provided_test1 () = 
-    let val var1 = Clubs
-        val var2 = Num 2
-    in
-        card_value(var1, var2) = 2
-    end;
+        fun provided_test1 () = 
+            let val var1 = Clubs
+                val var2 = Num 2
+            in
+                card_value(var1, var2) = 2
+            end;
 
-fun provided_test2 () = 
-    let val var1 = Clubs
-        val var2 = Ace
-    in
-        card_value(var1, var2) = 11
-    end;
+        fun provided_test2 () = 
+            let val var1 = Clubs
+                val var2 = Ace
+            in
+                card_value(var1, var2) = 11
+            end;
 
-fun provided_test3 () = 
-    let val var1 = Clubs
-        val var2 = King
-    in
-        card_value(var1, var2) = 10
-    end;
+        fun provided_test3 () = 
+            let val var1 = Clubs
+                val var2 = King
+            in
+                card_value(var1, var2) = 10
+            end;
 
-val CARD_VALUE_TEST_1 = provided_test1()
-val CARD_VALUE_TEST_2 = provided_test2()
-val CARD_VALUE_TEST_3 = provided_test3()
+    val CARD_VALUE_TEST_1 = provided_test1()
+    val CARD_VALUE_TEST_2 = provided_test2()
+    val CARD_VALUE_TEST_3 = provided_test3()
 
 
     (*PROBLEM 2C*)
@@ -288,44 +288,138 @@ fun remove_card (cs : card list, c : card, e : exn) =
         | x::xs => if x=c then xs else x::remove_card(xs, c, e)
 
 
-fun provided_test1 () = 
-    let val var1 = [(Hearts, Ace), (Diamonds, Num 3)]
-        val var2 = (Hearts, Ace)
-    in
-        remove_card(var1, var2, IllegalMove) = [(Diamonds, Num 3)]
-    end;
+        fun provided_test1 () = 
+            let val var1 = [(Hearts, Ace), (Diamonds, Num 3)]
+                val var2 = (Hearts, Ace)
+            in
+                remove_card(var1, var2, IllegalMove) = [(Diamonds, Num 3)]
+            end;
 
-fun provided_test2 () = 
-    let val var1 = [(Hearts, Num 2)]
-        val var2 = (Hearts, Ace)
-    in
-        ((remove_card (var1, var2, IllegalMove); false) handle IllegalMove => true)
-    end;
+        fun provided_test2 () = 
+            let val var1 = [(Hearts, Num 2)]
+                val var2 = (Hearts, Ace)
+            in
+                ((remove_card (var1, var2, IllegalMove); false) handle IllegalMove => true)
+            end;
 
 
-val REMOVE_CARD_TEST_1 = provided_test1 ()
-val REMOVE_CARD_TEST_2 = provided_test2 ()
+    val REMOVE_CARD_TEST_1 = provided_test1 ()
+    val REMOVE_CARD_TEST_2 = provided_test2 ()
 
 
 
 fun sum_cards (cs : card list) =
     let fun function_helper (xs, accumulate) =
         case xs of
-            [] => accumulate | x::xs => helper(xs, accumulate + card_value(x))
-    in
-        function_helper(cs, 0)
+            [] => accumulate | x::xs => function_helper(xs, accumulate + card_value(x))
+        in function_helper(cs, 0)
     end
 
+        fun provided_test1 () = 
+            let val variable = [(Clubs, Num 2),(Clubs, Num 2)]
+            in
+                sum_cards variable = 4
+            end;
 
-fun score (cs : card list, goal : int) =
-    let val sum = sum_cards(cs)
-        val prelimit_score = if goal < sum 
-            then ( sum - goal ) * 3
-            else goal - sum
+
+        fun provided_test2 () = 
+            let val variable = [(Clubs, Ace),(Clubs, Num 2)]
+            in
+                sum_cards variable = 13
+            end;
+
+
+        fun provided_test3 () = 
+            let val variable = []
+            in
+                sum_cards variable = 0
+            end;
+
+
+    val SUM_CARDS_TEST_1 = provided_test1()
+    val SUM_CARDS_TEST_2 = provided_test2()
+    val SUM_CARDS_TEST_3 = provided_test3()
+
+
+
+fun all_same_color (cs : card list) =
+    case cs of [] => true 
+        | _::[] => true
+        | head::(neck::rest) => ( 
+            card_color(head) = card_color(neck) 
+            andalso 
+            all_same_color(neck::rest) 
+        );
+
+
+
+fun score (cs, goal) = 
+  let fun pre_score (cs) =
+    case (sum_cards(cs), goal) of 
+        (sum, goal) => case sum > goal of
+            true => (sum - goal) * 3 
+            | false => goal - sum
+  in case all_same_color(cs) of
+      true => pre_score(cs) div 2
+      | false => pre_score(cs)
+  end
+
+
+fun officiate (cards, moves, goal) =
+    let
+    fun game (cards, helds, []) = score (helds, goal) (* no more moves, game end *)
+        | game (cards, helds, x::xs) =
+        let
+        fun discard_card (cards, helds, card, moves) =
+            game (cards, remove_card (helds, card, IllegalMove), moves)
+
+        fun draw_card ([], helds, moves) = score (helds, goal)  (* no more cards, game end *)
+            | draw_card (x::xs, helds, moves) =
+            let
+            val drawed_helds = x :: helds
+            val is_greater = sum_cards (drawed_helds) > goal
+            in
+            if is_greater then
+                (* sum of the helds card exceed the goal, game end *)
+                score (drawed_helds, goal)
+            else
+                game (xs, drawed_helds, moves)
+            end
+        in
+        case x of
+            Discard card => discard_card (cards, helds, card, xs)
+            | Draw => draw_card (cards, helds, xs)
+        end
     in
-        if all_same_color(cs) then prelimit_score div 2 else prelimit_score
-    end
+        game (cards, [], moves)
+    end;
 
+        fun provided_test1 () = 
+            let val arr1 = [(Hearts, Num 2),(Clubs, Num 4)]
+                val arr2 = [Draw]
+                val goal = 15
+            in
+                officiate (arr1,arr2, goal) = 6
+            end;
 
+        fun provided_test2 () = 
+            let val arr1 = [(Clubs,Ace),(Spades,Ace),(Clubs,Ace),(Spades,Ace)]
+                val arr2 = [Draw, Draw, Draw, Draw, Draw]
+                val goal = 42
+            in
+                officiate (arr1,arr2, goal) = 3
+            end;
 
-    
+        fun provided_test3 () = 
+            let val arr1 = [(Clubs,Jack),(Spades,Num(8))]
+                val arr2 = [Draw,Discard(Hearts,Jack)]
+                val goal = 42
+            in
+                ((officiate(arr1, arr2, goal); false) handle IllegalMove => true)
+            end;
+
+    (*TESTS*)
+val OFFICIATE_TEST_1 = provided_test1()
+val OFFICIATE_TEST_2 = provided_test2()
+val OFFICIATE_TEST_3 = provided_test3()
+
