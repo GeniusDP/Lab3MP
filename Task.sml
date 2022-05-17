@@ -280,3 +280,10 @@ fun provided_test3 () =
 val CARD_VALUE_TEST_1 = provided_test1()
 val CARD_VALUE_TEST_2 = provided_test2()
 val CARD_VALUE_TEST_3 = provided_test3()
+
+
+    (*PROBLEM 2C*)
+fun remove_card (cs : card list, c : card, e : exn) =
+    case cs of [] => raise e
+        | x::xs => if x=c then xs else x::remove_card(xs, c, e)
+
