@@ -308,4 +308,10 @@ val REMOVE_CARD_TEST_2 = provided_test2 ()
 
 
 
-
+fun sum_cards (cs : card list) =
+    let fun function_helper (xs, accumulate) =
+        case xs of
+            [] => accumulate | x::xs => helper(xs, accumulate + card_value(x))
+    in
+        function_helper(cs, 0)
+    end
