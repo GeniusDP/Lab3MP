@@ -243,3 +243,12 @@ val CARD_COLOUR_TEST_1 = provided_test1()
 val CARD_COLOUR_TEST_2 = provided_test2()
 val CARD_COLOUR_TEST_3 = provided_test3()
 val CARD_COLOUR_TEST_4 = provided_test4()
+
+
+fun card_value (suit, rank) =
+  case rank of
+    Jack => 10
+    | Queen => 10
+    | King => 10
+    | Ace => 11
+    | Num i => i
