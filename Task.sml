@@ -209,3 +209,37 @@ fun card_color (suit, rank) =
     | Diamonds => Red
     | Hearts => Red
 
+
+
+fun provided_test1 () = 
+    let val var1 = Clubs
+        val var2 = Num 2
+    in
+        card_color(var1, var2) = Black
+    end;
+
+fun provided_test2 () = 
+    let val var1 = Spades
+        val var2 = Num 2
+    in
+        card_color(var1, var2) = Black
+    end;
+
+fun provided_test3 () = 
+    let val var1 = Diamonds
+        val var2 = Num 2
+    in
+        card_color(var1, var2) = Red
+    end;
+
+fun provided_test4 () = 
+    let val var1 = Hearts
+        val var2 = Num 2
+    in
+        card_color(var1, var2) = Red
+    end;
+
+val CARD_COLOUR_TEST_1 = provided_test1()
+val CARD_COLOUR_TEST_2 = provided_test2()
+val CARD_COLOUR_TEST_3 = provided_test3()
+val CARD_COLOUR_TEST_4 = provided_test4()
