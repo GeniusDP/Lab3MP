@@ -7,7 +7,7 @@ fun same_string(s1 : string, s2 : string) =
 (* put your solutions for problem 1 here *)
     
     
-    (* PROBLEM A *)
+    (* PROBLEM 1A *)
 fun all_except_option (str, sl) =
   case sl of [] => NONE | x::xs => case same_string(str, x) of
         true => SOME(xs) | false => case all_except_option(str, xs) of
@@ -58,7 +58,7 @@ val ALL_EXCEPT_OPTION_5 = provided_test5 ()
 
 
 
-    (* PROBLEM B *)
+    (* PROBLEM 1B *)
 
 fun get_substitutions1 (xss, y) =
     case xss of
@@ -100,7 +100,7 @@ val GET_SUBSTITUTIONS1_3 = provided_test3 ()
 val GET_SUBSTITUTIONS1_4 = provided_test4 ()
 
 
-    (*PROBLEM C*)
+    (*PROBLEM 1C*)
 fun get_substitutions2 (variable1, y) =
         let fun helper (helper_ss, acc) =
             case helper_ss of [] => acc
@@ -145,7 +145,7 @@ val GET_SUBSTITUTIONS2_3 = provided_test3 ()
 val GET_SUBSTITUTIONS2_4 = provided_test4 ()
 
 
-    (*PROBLEM D*)
+    (*PROBLEM 1D*)
 fun similar_names (arrr, {first=f, middle=m, last=l}) =
     let fun function_for_substitution (arr) =
             case arr of [] => [] | x::arr' => {
@@ -201,7 +201,7 @@ datatype move = Discard of card | Draw
 exception IllegalMove
 
 (* put your solutions for problem 2 here *)
-
+    (*PROBLEM 2A*)
 fun card_color (suit, rank) = 
   case suit of
     Spades => Black
@@ -245,6 +245,8 @@ val CARD_COLOUR_TEST_3 = provided_test3()
 val CARD_COLOUR_TEST_4 = provided_test4()
 
 
+
+    (*PROBLEM 2B*)
 fun card_value (suit, rank) =
   case rank of
     Jack => 10
@@ -252,3 +254,29 @@ fun card_value (suit, rank) =
     | King => 10
     | Ace => 11
     | Num i => i
+
+
+fun provided_test1 () = 
+    let val var1 = Clubs
+        val var2 = Num 2
+    in
+        card_value(var1, var2) = 2
+    end;
+
+fun provided_test2 () = 
+    let val var1 = Clubs
+        val var2 = Ace
+    in
+        card_value(var1, var2) = 11
+    end;
+
+fun provided_test3 () = 
+    let val var1 = Clubs
+        val var2 = King
+    in
+        card_value(var1, var2) = 10
+    end;
+
+val CARD_VALUE_TEST_1 = provided_test1()
+val CARD_VALUE_TEST_2 = provided_test2()
+val CARD_VALUE_TEST_3 = provided_test3()
