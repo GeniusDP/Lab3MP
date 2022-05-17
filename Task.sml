@@ -315,3 +315,17 @@ fun sum_cards (cs : card list) =
     in
         function_helper(cs, 0)
     end
+
+
+fun score (cs : card list, goal : int) =
+    let val sum = sum_cards(cs)
+        val prelimit_score = if goal < sum 
+            then ( sum - goal ) * 3
+            else goal - sum
+    in
+        if all_same_color(cs) then prelimit_score div 2 else prelimit_score
+    end
+
+
+
+    
